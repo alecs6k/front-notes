@@ -44,7 +44,10 @@ export default function TaskForm() {
       await fetch("https://note-serv.herokuapp.com/tasks", {
         method: "POST",
         body: JSON.stringify(task),
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          "Content-Type": "application/json",
+        },
       });
     }
 
@@ -58,7 +61,14 @@ export default function TaskForm() {
   };
 
   const loadTask = async (id) => {
-    const res = await fetch('https://note-serv.herokuapp.com/tasks/'+id);
+    const res = await fetch('https://note-serv.herokuapp.com/tasks/'+id, {
+      method: "GET",
+      body: JSON.stringify(task),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "application/json",
+      },
+    });
     const data = await res.json();
     setTask({title: data.title, description: data.description});
     setEditing(true);
