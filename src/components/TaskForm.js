@@ -31,6 +31,7 @@ export default function TaskForm() {
     if(editing) {
       const response = await fetch(`https://note-serv.herokuapp.com/tasks/${params.id}`, {
         method: "PUT",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
