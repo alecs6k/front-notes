@@ -57,7 +57,10 @@ export default function TaskForm() {
   };
 
   const loadTask = async (id) => {
-    const res = await fetch('https://note-serv.herokuapp.com/tasks/'+id);
+    const res = await fetch('https://note-serv.herokuapp.com/tasks/'+id, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
     const data = await res.json();
     setTask({title: data.title, description: data.description});
     setEditing(true);
